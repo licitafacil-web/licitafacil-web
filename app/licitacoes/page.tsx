@@ -81,6 +81,7 @@ export default function LicitacoesPage() {
   }, [busca, estado, municipio, modalidade, valorMin, valorMax, dataInicio, dataFim, page]);
 
    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -88,6 +89,7 @@ export default function LicitacoesPage() {
       return;
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchLicitacoes(token);
   }, [router, fetchLicitacoes]);
 

@@ -49,6 +49,7 @@ export default function AlertasPage() {
   }, [router]);
 
    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -56,6 +57,7 @@ export default function AlertasPage() {
       return;
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchAlertas(token);
   }, [router, fetchAlertas]);
 

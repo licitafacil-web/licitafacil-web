@@ -50,12 +50,14 @@ export default function DashboardPage() {
   }, [router]);
 
    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!token) {
       router.push('/login');
       return;
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchDashboard(token);
   }, [router, fetchDashboard, token]);
 

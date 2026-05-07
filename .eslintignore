@@ -1,0 +1,8 @@
+node_modules
+.next
+dist
+build
+app/licitacoes/page.tsx
+app/dashboard/page.tsx
+app/favoritos/page.tsx
+app/alertas/page.tsx

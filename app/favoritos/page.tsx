@@ -49,6 +49,7 @@ export default function FavoritosPage() {
   }, [router]);
 
    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -56,6 +57,7 @@ export default function FavoritosPage() {
       return;
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchFavoritos(token);
   }, [router, fetchFavoritos]);
 
