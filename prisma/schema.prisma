@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Licitacao {
+  id                  String   @id @default(cuid())
+  objeto              String
+  orgao               String
+  uf                  String
+  municipio           String
+  modalidade          String
+  valorEstimado       Float
+  dataPublicacao      DateTime
+  linkPncp            String
+  numeroControlePncp  String   @unique
+  criadoEm            DateTime @default(now())
+  
+  favoritos           Favorito[]
+  
+  @@index([uf])
+  @@index([numeroControlePncp])
+}
+
+model Favorito {
+  id          String   @id @default(cuid())
+  licitacaoId String
+  licitacao   Licitacao @relation(fields: [licitacaoId], references: [id], onDelete: Cascade)
+  criadoEm    DateTime @default(now())
+  
+  @@unique([licitacaoId])
+}
+
+model Alerta {
+  id            String   @id @default(cuid())
+  palavraChave  String
+  estado        String
+  modalidade    String?
+  ativo         Boolean  @default(true)
+  criadoEm      DateTime @default(now())
+  
+  @@index([estado])
+}
+
+model SyncLog {
+  id          String   @id @default(cuid())
+  status      String
+  quantidade  Int
+  erros       String?
+  executadoEm DateTime @default(now())
+}
