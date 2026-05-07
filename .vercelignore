@@ -1,0 +1,6 @@
+server/
+prisma/
+.env.local
+.env
+node_modules/
+.git/
